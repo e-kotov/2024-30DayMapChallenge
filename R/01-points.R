@@ -95,7 +95,7 @@ map_01_points <- ggplot() +
   # annotate("text", x = 1.55, y = 32.5, label = "Author: Egor Kotov", size = 3, hjust = 0, color = "grey30", family = "Roboto") +
   labs(
     title = "Dominance of <span style='color:#f7de38'>Female</span> Commuters<br>in Urban Destinations Across Spain",
-    caption = "Author: Egor Kotov | #30DayMapChallenge\nR package to get the data: https://ropenspain.github.io/spanishoddata/\nOriginal data source: Ministry of Transport and Sustainable Mobility of Spain; Nommon"
+    caption = "Author: Egor Kotov | #30DayMapChallenge | Day 1: Points\nR package to get the data: https://ropenspain.github.io/spanishoddata/\nOriginal data source: Ministry of Transport and Sustainable Mobility of Spain; Nommon"
   ) +
   theme_void() +
   theme(
