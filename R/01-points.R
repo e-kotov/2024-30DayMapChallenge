@@ -1,3 +1,8 @@
+# description ------------------------------------------------------------
+
+# 2024-11-01
+
+# "30DayMapChallenge classic: A map with points. Start the challenge with points. Show individual locations—anything from cities to trees or more abstract concepts. Simple, but a key part of the challenge."
 
 # setup packages ---------------------------------------------------------
 
