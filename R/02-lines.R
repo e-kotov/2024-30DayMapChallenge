@@ -50,7 +50,8 @@ if (!file.exists(cached_csv_nov_02)) {
 }
 
 affected_roads_nov_02 <- read_csv2(cached_csv_nov_02)
-affected_road_names_nov_02 <- unique(affected_roads_nov_02$CARRETERA)
+affected_road_names_nov_02 <- unique(affected_roads_nov_02$CARRETERA) |>
+  str_extract("\\b[A-Z]+-\\d+\\b")
 
 # download affected roads as of Oct 31 -----------------------------------
 cached_csv_oct_31 <- "cache/02-lines/2024-10-31-affected_roads.csv"
@@ -60,7 +61,8 @@ if (!file.exists(cached_csv_oct_31)) {
 }
 
 affected_roads_oct_31 <- read_csv2(cached_csv_oct_31)
-affected_road_names_oct_31 <- unique(affected_roads_oct_31$CARRETERA)
+affected_road_names_oct_31 <- unique(affected_roads_oct_31$CARRETERA) |> 
+  str_extract("\\b[A-Z]+-\\d+\\b")
 
 
 # get road segments ------------------------------------------------------
