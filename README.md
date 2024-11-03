@@ -23,3 +23,15 @@ Credits to Virgilio Gómez-Rubio ([@precariobecario](https://x.com/precariobecar
 ![Gradual Recovery of Road Connectivity after the Passage of DANA (storm) in Spain](maps/02-lines.png)
 
 To recreate the plot, use the [R/02-lines.R](R/02-lines.R) script in this repository.
+
+# 3. Polygons
+
+**Up to 2% of typical daily mobility in Spain was affected by (storm) DANA**
+
+The map shows the affected municipalities in Spain and emphasizes the most affected areas by exaggerating the size of the polygons by the number of trips.
+
+*In solidarity with the victims and their families.*
+
+Based on road incidents data by [https://www.dgt.es/](https://www.dgt.es/) and open mobility data by [https://www.transportes.gob.es/](https://www.transportes.gob.es/ministerio/proyectos-singulares/estudios-de-movilidad-con-big-data/opendata-movilidad).
+
+![Up to 2% of typical daily mobility in Spain was affected by (storm) DANA](maps/03-polygons.svg)
