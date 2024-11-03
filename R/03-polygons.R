@@ -9,10 +9,27 @@
 
 if (!require("pak")) install.packages("pak")
 options(repos = c(rOpenSpain = "https://ropenspain.r-universe.dev", CRAN = "https://cloud.r-project.org"))
-packages <- c("sf", "tidyverse", "spanishoddata", "mapSpain", "ggimage", "rostemplate", "ggtext", "resmush", "svglite", "arcpullr", "RcppSimdJson", "fs")
+packages <- c("sf", "tidyverse", "spanishoddata", "mapSpain", "ggimage", "rostemplate", "ggtext", "resmush", "svglite", "arcpullr", "RcppSimdJson", "fs", "e-kotov/cartogram@cdec44b", "Cairo")
 pak::pkg_install(packages, upgrade = FALSE, ask = FALSE)
-suppressPackageStartupMessages(invisible(lapply(packages, library, character.only = TRUE)))
-rm(packages)
+
+extract_pkg_name <- function(pkg) {
+  if (grepl("/", pkg) && grepl("@", pkg)) {
+    # Extract text between '/' and '@'
+    pkg_name <- sub("^.*/(.*?)@.*$", "\\1", pkg)
+  } else {
+    # Take the whole string if '/' and '@' are not present
+    pkg_name <- pkg
+  }
+  return(pkg_name)
+}
+
+# Cleaned package names
+clean_packages <- sapply(packages, extract_pkg_name)
+
+# Load the packages without startup messages
+suppressPackageStartupMessages(invisible(lapply(clean_packages, library, character.only = TRUE)))
+
+rm(packages, clean_packages)
 
 
 # get the data from IGN --------------------------------------------------
@@ -194,10 +211,6 @@ expanded_km_intervals <- exact_km_intervals_for_queries |>
   do(generate_intervals(., interval = 0.5, min_distance = 1.1)) |> 
   ungroup()
 
-exact_km_intervals_for_queries
-expanded_km_intervals
-
-
 
 # query coorindates ------------------------------------------------------
 
@@ -278,7 +291,7 @@ km_coords_sf <- km_coords_tbl |>
   ) |> 
   ungroup() |> 
   st_as_sf(sf_column_name = "geometry")
-mapview(km_coords_sf)
+# mapview(km_coords_sf)
 
 
 # buffer and select from all actual roads --------------------------------
@@ -289,13 +302,161 @@ km_coords_sf_buffers <- km_coords_sf |>
   st_transform(4258)
 
 selected_roads <- roads_sf[km_coords_sf_buffers,]
+# mapviewOptions(platform = "leafgl")
 # mapview(selected_roads) + mapview(km_coords_sf_buffers, col.regions = "red")
 
 
 
+# MITMS data -------------------------------------------------------------
+
+districts_sf <- spod_get_zones("distr", ver = 2) |> 
+  filter(!grepl("FR.*|PT.*", id))
+selected_roads <- st_transform(selected_roads, st_crs(districts_sf))
+
+# mark the zones with affected roads
+districts_affected <- districts_sf[selected_roads,] |>
+  mutate(affected = TRUE)
+districts_classified <- districts_sf |> 
+  filter(!id %in% districts_affected$id) |> 
+  mutate(affected = FALSE) |>
+  rbind(districts_affected)
+
+
+# move Canary islands ----------------------------------------------------
+
+districts_classified_for_plot <- rbind(
+  # all zones except for Canary Islands
+  districts_classified |> 
+    filter(!grepl("^38|^35", id)),
+  # Canary Islands moved closer to mainland Spain
+  esp_move_can(
+    districts_classified |> filter(grepl("^38|^35", id))
+    )
+  ) |> 
+  st_simplify(preserveTopology = TRUE, dTolerance = 100)
 
 
 
+# get number of trips ----------------------------------------------------
+
+districts_with_trips_for_plot_save_path <- "cache/03-polygons/districts_with_trips_for_plot.rds"
+if(file.exists(districts_with_trips_for_plot_save_path)) {
+  od <- spod_get(
+    type = "origin-destination",
+    zones = "distr",
+    dates = c("2023-10-25") # roughly equivalent to 2024-10-30
+  )
+
+  trips_by_origin <- od |> 
+    group_by(id_origin) |> 
+    summarise(total_trips = sum(n_trips, na.rm = TRUE), .groups = "drop") |> 
+    collect()
+
+  districts_with_trips_for_plot <- districts_classified_for_plot |> 
+    left_join(trips_by_origin, by = c("id" = "id_origin")) |> 
+    mutate(total_trips = if_else(is.na(total_trips), 1, total_trips))
+
+  saveRDS(districts_with_trips_for_plot, districts_with_trips_for_plot_save_path)
+}
+districts_with_trips_for_plot <- readRDS(districts_with_trips_for_plot_save_path)
+
+# cartogram --------------------------------------------------------------
+
+affected_cargotram <- districts_with_trips_for_plot |>
+  filter(affected) |>
+  cartogram_cont(weight = "total_trips", itermax = 15)
+# mapview(affected_cargotram)
+
+
+# the share of potentially disrupted trips -------------------------------
+
+share_num_disrupted <- districts_with_trips_for_plot |> 
+  st_drop_geometry() |> 
+  group_by(affected) |>
+  summarise(total_trips = sum(total_trips, na.rm = TRUE), .groups = "drop") |>
+  mutate(share_disrupted = round(total_trips / sum(total_trips) * 100, 0)) |> 
+  filter(affected)
+
+
+# prepare paths to logos -------------------------------------------------
+
+spod_logo <- system.file("help/figures", "logo.png", package = "spanishoddata")
+ropenspain_logo <- system.file("help/figures", "logo.png", package = "rostemplate")
+
+# generate plot ----------------------------------------------------------
+
+
+map_03_polygons <- ggplot() +
+  geom_sf(data = esp_get_country(),
+          fill = "grey90", col = "grey20", linewidth = 0.03) +
+  geom_sf(data = affected_cargotram,
+          # aes(fill = total_trips),
+          fill = "grey30",
+          col = "grey80",
+          linewidth = 0.2) +
+  # scale_fill_viridis_c(option = "inferno", name = "Viajes") +
+  geom_image(data = tibble(x = 3, y = 37),
+    aes(image = spod_logo, x = x, y = y), size = 0.3) +
+  geom_image(data = tibble(x = 2.05, y = 35),
+    aes(image = ropenspain_logo, x = x, y = y), size = 0.05) +
+  annotate("text", x = 2.55, y = 35, label = "rOpenSpain", size = 3, hjust = 0, color = "grey30") +
+  labs(
+    title = paste0("Hasta el ", share_num_disrupted$share_disrupted, "% de la Movilidad Diaria<br>Nacional Interrumpida por la DANA"),
+    subtitle = "Tamaño del municipio escalado según<br>el número de viajes potencialmente afectados",
+    caption = "<i>En solidaridad con las víctimas y sus familias</i><br><br>Autor: Egor Kotov | #30DayMapChallenge | Día 3: Polígonos<br>Paquete R para acceder a los datos: ropenspain.github.io/spanishoddata/<br>Fuentes de datos: Ministerio de Transportes y Movilidad Sostenible (MITMS); Nommon;<br>Dirección General de Trafico (DGT); Instituto Geográfico Nacional<br>Basado en los datos de cierres de carreteras de la DGT el 31 de octubre de 2024<br>y en los datos de movilidad típica del MITMS/Nommon<br>en un día comparable el 25 de octubre de 2023."
+  ) +
+  theme_void() +
+  theme(
+    text = element_text(family = "Roboto", size = 18),
+    panel.background = element_rect(fill = "grey70", color = NA),
+    plot.background = element_rect(fill = "grey70", color = NA),
+    legend.text = element_markdown(size = 8),
+    legend.title = element_markdown(size = 10),
+    plot.title = element_markdown(hjust = 0.5, color = "grey30"),
+    plot.subtitle = element_markdown(hjust = 0.5, color = "grey40", size = 12, face = "italic"),
+    plot.caption = element_markdown(size = 9, hjust = 0.5, color = "grey40"),
+    plot.margin = margin(t = 20, r = 5, b = 20, l = 5),
+    legend.position = "inside",
+    legend.position.inside = c(0.15, 0.6),
+    legend.key.width  = unit(0.5, "lines"),
+    legend.key.size = unit(1.4, "cm"),
+    legend.key.height = unit(0.2, "cm")
+  )
+map_03_polygons
+
+
+# print(map_03_polygons)
+
+# save map to png --------------------------------------------------------
+
+ggsave(
+  filename = "maps/03-polygons.png",
+  map_03_polygons,
+  width = 7,
+  height = 7,
+  units = "in",
+  dpi = 300,
+  create.dir = TRUE
+)
+
+
+# opmimise png with resmush.it -------------------------------------------
+
+resmush_file("maps/03-polygons.png", overwrite = TRUE)
+
+
+# save to svg ------------------------------------------------------------
+
+
+ggsave(
+  filename = "maps/03-polygons.svg",
+  map_03_polygons,
+  width = 8,
+  height = 7,
+  units = "in",
+  dpi = 300,
+  create.dir = TRUE
+)
 
 
 
