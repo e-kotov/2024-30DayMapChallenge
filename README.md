@@ -35,3 +35,14 @@ The map shows the affected municipalities in Spain and emphasizes the most affec
 Based on road incidents data by [https://www.dgt.es/](https://www.dgt.es/) and open mobility data by [https://www.transportes.gob.es/](https://www.transportes.gob.es/ministerio/proyectos-singulares/estudios-de-movilidad-con-big-data/opendata-movilidad).
 
 ![Up to 2% of typical daily mobility in Spain was affected by (storm) DANA](maps/03-polygons.svg)
+
+# 4. Hexagons
+
+*skipped for now*
+
+
+# 5. A Journey
+
+All journeys in Spain in one day.
+
+![All journeys in Spain in one day](maps/05-journey.mp4)
