@@ -57,7 +57,7 @@ See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchall
 
 All journeys in Spain in one day.
 
-{{< video maps/05-journey.mp4 >}}
+https://github.com/user-attachments/assets/a939b9d2-c685-4321-b617-abff87f89213
 
 See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-journey-activity-7259507774324195328-Dnxx), [Mastodon](https://datasci.social/@EgorKotov/113432261713732931), [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3laa3h4fr5e2z), [Twitter/X](https://x.com/EgorKotov/status/1853726331038540163).
 
