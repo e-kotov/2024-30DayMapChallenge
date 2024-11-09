@@ -4,6 +4,9 @@
 
 <https://30daymapchallenge.com/>
 
+
+
+
 # 1. Points
 
 **Dominance of Female Commuters in Urban Destinations Across Spain**
@@ -83,7 +86,7 @@ See threads on
 
 All journeys in Spain in one day.
 
-[maps/05-journey.mp4](maps/05-journey.mp4)
+https://github.com/user-attachments/assets/a939b9d2-c685-4321-b617-abff87f89213
 
 See threads on
 [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-journey-activity-7259507774324195328-Dnxx),
