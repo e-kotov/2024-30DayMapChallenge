@@ -77,3 +77,5 @@ See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchall
 Hand drawn logo of `{spanishoddata}` R package. Get it here: https://github.com/rOpenSpain/spanishoddata/
 
 ![Hand drawn logo of `{spanishoddata}` R package](maps/10-pen-and-paper.jpg)
+
+See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-penandpaper-rstats-activity-7261377898064883713-WOMS), [Mastodon](https://datasci.social/@EgorKotov/113459011680094552), [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lalxovcaxk2i), [Twitter/X](https://x.com/EgorKotov/status/1855611133941436661).
