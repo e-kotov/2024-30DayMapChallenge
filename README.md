@@ -4,9 +4,6 @@
 
 <https://30daymapchallenge.com/>
 
-
-
-
 # 1. Points
 
 **Dominance of Female Commuters in Urban Destinations Across Spain**
@@ -106,3 +103,11 @@ See threads on
 [Mastodon](https://datasci.social/@EgorKotov/113453863690205418),
 [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lajocu6eu223),
 [Twitter/X](https://x.com/EgorKotov/status/1855280788847181909).
+
+# 10. Pen and Paper
+
+Hand drawn logo of `{spanishoddata}` R package. Get it here:
+https://github.com/rOpenSpain/spanishoddata/
+
+![Hand drawn logo of `{spanishoddata}` R
+package](maps/10-pen-and-paper.jpg)
