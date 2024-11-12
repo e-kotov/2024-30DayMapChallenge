@@ -137,7 +137,7 @@ base_plot <- ggplot() +
     geom_sf(data = districts_for_plot, fill = NA, color = "white", lwd = 0.1) +
   coord_sf(xlim = c(-0.7, -0.2), ylim = c(39.3, 39.6))
 
-f28 <- base_plot |> add_flowmap(od = flowmapper_od |> filter(date == "2024-10-28"), nodes = flowmapper_nodes, node_radius_factor = 0.5, edge_width_factor = 0.5, arrow_point_angle = 35) + theme_void() + labs(title = "13:00 - 14:00 28 Oct 2024")+ theme(legend.position = c(0.9, 0.5), plot.title = element_text(family = "Roboto")) + scale_fill_viridis_c(limits = c(0,500), name = "Trips")
+f28 <- base_plot |> add_flowmap(od = flowmapper_od |> filter(date == "2024-10-28"), nodes = flowmapper_nodes, node_radius_factor = 0.5, edge_width_factor = 0.5, arrow_point_angle = 35) + theme_void() + labs(title = "13:00 - 14:00 28 Oct 2024")+ theme(legend.position = c(0.9, 0.5), plot.title = element_text(family = "Roboto")) + scale_fill_viridis_c(limits = c(0,500), name = "Viajes")
 
 
 impacted_area$area_type <- "Impacted Area"
@@ -145,7 +145,7 @@ impacted_area$area_type <- "Impacted Area"
 f30 <- ( base_plot +
   geom_sf(data = impacted_area, aes(fill = area_type), alpha = 0.3) +
   coord_sf(xlim = c(-0.7, -0.2), ylim = c(39.3, 39.6)) +
-  scale_fill_manual(values = c("Impacted Area" = "pink"), name = "") + new_scale_fill() )|>
+  scale_fill_manual(values = c("Impacted Area" = "pink"), name = "", labels = "Delimitación\nCartográfica\nde la DANA") + new_scale_fill() )|>
   add_flowmap(od = flowmapper_od |> filter(date == "2024-10-30"), nodes = flowmapper_nodes, node_radius_factor = 0.5, edge_width_factor = 0.5, arrow_point_angle = 35) + theme_void() + labs(title = "13:00 - 14:00 30 Oct 2024") + theme(legend.position = c(0.9, 0.5), plot.title = element_text(family = "Roboto")) + scale_fill_viridis_c(limits = c(0,500), guide = 'none')
 
 
@@ -159,7 +159,7 @@ h28 <- od_46186 |>
   geom_bar(data = od_46186 |> filter(date == "2024-10-28" & time_slot == 13), aes(x = time_slot, y = count), stat = "identity", fill = "darkblue") +
   scale_x_continuous(breaks = seq(from = 0, to = 23, by = 4)) +
   scale_y_continuous(breaks = c(0, 2000, 4000, 6000, 8000, 10000), limits = c(0, 10000)) +
-  labs(y = "", x = "Hour") +
+  labs(y = "", x = "Hora") +
   theme_classic(base_size = 14, base_family = "Roboto")
 
 
@@ -177,7 +177,7 @@ h30 <- od_46186 |>
   annotate("text", x = 15, y = 5500, label = "rOpenSpain", size = 6, hjust = 0, color = "grey30") +
   scale_x_continuous(breaks = seq(from = 0, to = 23, by = 4)) +
   scale_y_continuous(breaks = c(0, 2000, 4000, 6000, 8000, 10000), limits = c(0, 10000)) +
-  labs(y = "", x = "Hour") +
+  labs(y = "", x = "Hora") +
   theme_classic(base_size = 14, base_family = "Roboto")
 # h30
 
