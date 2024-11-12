@@ -117,3 +117,14 @@ See threads on
 [Mastodon](https://datasci.social/@EgorKotov/113459011680094552),
 [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lalxovcaxk2i),
 [Twitter/X](https://x.com/EgorKotov/status/1855611133941436661).
+
+# 12. Time and Space
+
+![Impact of DANA on mobility in a neighbourhood in
+Valencia](maps/12-time-and-space.png)
+
+See threads on
+[LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-timeandspace-dana-activity-7262140965237215233-gvf4),
+[Mastodon](https://datasci.social/@EgorKotov/113470963311439758),
+[Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3larbjwx4h22g),
+[Twitter/X](https://x.com/EgorKotov/status/1856377020919197754).
