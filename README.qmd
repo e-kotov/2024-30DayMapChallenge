@@ -86,3 +86,9 @@ See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchall
 
 See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-timeandspace-dana-activity-7262140965237215233-gvf4
 ), [Mastodon](https://datasci.social/@EgorKotov/113470963311439758), [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3larbjwx4h22g), [Twitter/X](https://x.com/EgorKotov/status/1856377020919197754).
+
+# 13. A new tool
+
+https://github.com/user-attachments/assets/879816bc-6d3c-42a6-8579-d0ee57fdfe25
+
+See threads on [LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-anewtool-rstats-activity-7262600544597299200-qoyS), [Mastodon](https://datasci.social/@EgorKotov/113478160396865901), [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3laui3uvxns24), [Twitter/X](https://x.com/EgorKotov/status/1856837595797340645).
