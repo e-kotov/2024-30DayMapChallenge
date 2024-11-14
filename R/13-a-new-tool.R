@@ -227,7 +227,7 @@ html_overlay <- sprintf(
    <img src="%s" class="floating-image2" alt="Overlay Image 2">
    <div class="floating-text">rOpenSpain</div>', base64_spod, base64_ropenspain)
 
-# Step 4: Inject the HTML overlay into the leaflet map's saved HTML
+# Inject the HTML overlay into the leaflet map's saved HTML
 map_with_overlay <- onRender(
   compare_plot,
   paste0(
