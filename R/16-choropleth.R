@@ -334,4 +334,4 @@ styled_map <- onRender(
 # Render the map with the title and overlays
 styled_map
 
-saveWidget(styled_map, "maps/16-choropleth.html")
+saveWidget(styled_map, "maps/16-choropleth.html", selfcontained = TRUE)
