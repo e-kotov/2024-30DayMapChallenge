@@ -145,11 +145,34 @@ A map of tiger mosquitoes based on Mosquito Alert data.
 
 ![A world map](maps/14-a-world-map.gif)
 
+See threads on
+[LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-world-mosquitoalert-activity-7262945628412866561-cLvi),
+[Mastodon](https://datasci.social/@EgorKotov/113483578124191960),
+[Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lawu5csxtk2a),
+[Twitter/X](https://x.com/EgorKotov/status/1857182468731986332).
+
 # 15. My data
 
 No map today. Only reminding people about the changes in Google Location
 History (Timeline) changes regarding the data storage.
 
+See threads on
+[LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-mydata-yourdata-activity-7263324889019830272-OKao),
+[Mastodon](https://datasci.social/@EgorKotov/113489453833508556),
+[Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lazib5qzbk2h),
+[Twitter/X](https://x.com/EgorKotov/status/1857559979563049423).
+
 # 16. Choropleth
 
+Impact of DANA on displacement from the usual residence in Spain.
+Comparing the business as usual (Oct 2023) with the latest open mobility
+data (2024-10-31) from Ministerio de Transportes y Movilidad Sostenible
+and Nommon
+
 ![Choropleth](maps/16-choropleth.gif)
+
+See threads on
+[LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-choropleth-dana-activity-7263727106877014016-5n8w),
+[Mastodon](https://datasci.social/@EgorKotov/113495771006423617),
+[Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lb4bsfoa4s2d),
+[Twitter/X](https://x.com/EgorKotov/status/1857964514739687562).
