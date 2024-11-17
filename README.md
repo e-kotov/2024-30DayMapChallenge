@@ -172,7 +172,7 @@ and Nommon
 ![Choropleth](maps/16-choropleth.gif)
 
 See threads on
-[LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-choropleth-dana-activity-7263727106877014016-5n8w),
+[LinkedIn](https://www.linkedin.com/posts/egorkotov_30daymapchallenge-choropleth-dana-activity-7263905683492802560-AvA8),
 [Mastodon](https://datasci.social/@EgorKotov/113495771006423617),
 [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3lb4bsfoa4s2d),
 [Twitter/X](https://x.com/EgorKotov/status/1857964514739687562).
