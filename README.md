@@ -138,3 +138,18 @@ See threads on
 [Mastodon](https://datasci.social/@EgorKotov/113478160396865901),
 [Bluesky](https://bsky.app/profile/egorkotov.bsky.social/post/3laui3uvxns24),
 [Twitter/X](https://x.com/EgorKotov/status/1856837595797340645).
+
+# 14. A world map
+
+A map of tiger mosquitoes based on Mosquito Alert data.
+
+![A world map](maps/14-a-world-map.gif)
+
+# 15. My data
+
+No map today. Only reminding people about the changes in Google Location
+History (Timeline) changes regarding the data storage.
+
+# 16. Choropleth
+
+![Choropleth](maps/16-choropleth.gif)
