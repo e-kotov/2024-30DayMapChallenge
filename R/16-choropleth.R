@@ -20,6 +20,7 @@ rm(packages)
 
 # get the flows data -----------------------------------------------------
 
+
 overnight_stays <- spod_get(
   type = "overnight_stays",
   zones = "distr",
@@ -127,9 +128,10 @@ m2023 <- maplibre(
     popup = "tooltip"
   ) |> 
   add_legend(
-    '<span style="font-size: 24px; font-family: Roboto; font-weight: bold;">% de personas que no permanecieron en su lugar de residencia</span>
+    '<span style="font-size: 24px; font-family: Roboto; font-weight: bold;">% de personas que posiblemente no permanecieron en su lugar de residencia</span>
     <br><br>
-    <i style="font-size: 16px; font-family: Roboto;">(valores atípicos con el 100% eliminados)</i>',
+    <i style="font-size: 16px; font-family: Roboto;">- la medición puede verse afectada por interrupciones en la red</i><br>
+    <i style="font-size: 16px; font-family: Roboto;">- valores atípicos con el 100% eliminados</i>',
     values = c(0, 20, 40, 60, 80, 100),
     # set viridis colours
     colors = viridisLite::viridis(6),
@@ -211,7 +213,7 @@ dana_title <- '
       top: 20px;
       left: 50%%; /* Escaping %% for sprintf */
       transform: translateX(-50%%); /* Escaping %% for sprintf */
-      font-size: 28px;
+      font-size: 32px;
       font-family: Roboto, sans-serif;
       font-weight: bold;
       color: white;
@@ -222,16 +224,31 @@ dana_title <- '
   }
 </style>
 <div class="floating-dana-title">
-  La DANA provoca un<br>desplazamiento significativodesde<br>los lugares de residencia habituales
+  La DANA afecta la red móvil<br>y podría reflejar desplazamientos<br> residenciales en áreas afectadas
 </div>
 '
 
 custom_css_for_legend <- '
 <style>
-  #legend-927f2.top-left {
-      top: 140px;
-      left: 10px;
-  }
+#${el.id} .mapboxgl-legend.top-left h2 {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    margin: 10px 10px !important;
+    padding: 20px 20px !important;
+    font-size: 20px !important;
+    font-family: Roboto !important;
+    font-weight: bold !important;
+}
+
+#${el.id} .mapboxgl-legend.top-left {
+    position: absolute !important;
+    top: 140px !important;
+    width: 260px !important;
+    left: 10px !important;
+    z-index: 1001 !important;
+    background-color: #ffffff88 !important;
+}
 </style>
 '
 
